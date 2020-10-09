@@ -1,0 +1,20 @@
+<nav class="block {{ site.colors.navigation.container }}">
+    <div class="md:container">
+        <button class="menu-toggle md:hidden block w-full px-4 py-2 text-center {{ site.colors.navigation.links }}">
+            {% icon 'bars', 'solid' %}
+            Menu
+        </button>
+        <ul class="main-menu hidden md:flex flex-col md:flex-row m-0 p-0 list-none">
+            {% for link in menu %}
+            <li class="p-0 m-0">
+                <a href="{{ link.href }}" class="block px-4 py-2 border-t md:border-t-0 {{ site.colors.navigation.links }} {{ link.class }}"
+                        {% if link.target %} target="{{ link.target }}" {% endif %}
+                        {% if link.rel %} rel="{{ link.rel }}" {% endif %}
+                >
+                    {{ link.label }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

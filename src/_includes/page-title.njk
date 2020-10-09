@@ -1,0 +1,9 @@
+{% if not hide_title %}
+<div class="py-10 relative bg-no-repeat bg-center bg-cover {{ site.colors.title.container }}"
+     {% if header %}style="background-image: {% if title_overlay %}linear-gradient({{ title_overlay }}, {{ title_overlay }}),{% endif %} url('{{ header }}')"{% endif %}
+>
+    <div class="container">
+        <h1 class="{{ site.colors.title.text }}">{{ title }}</h1>
+    </div>
+</div>
+{% endif %}

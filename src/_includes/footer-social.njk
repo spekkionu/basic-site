@@ -1,0 +1,7 @@
+<nav class="text-sm">
+    {% for link in social %}
+    <a href="{{ link.url }}" aria-label="{{ link.label }}" class="never-underline inline-flex justify-center items-center text-white rounded-full text-3xl w-12 h-12 p-2 mr-2 mb-2" style="background-color: {{ link.color }}">
+        {% icon link.icon, 'brands' %}
+    </a>
+    {% endfor %}
+</nav>

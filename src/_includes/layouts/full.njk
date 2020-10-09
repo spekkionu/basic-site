@@ -1,0 +1,41 @@
+---
+cta: true
+header: /assets/images/header.jpg
+title_overlay: rgba(0, 0, 0, 0.6)
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}{% if not full_title %}{{ site.name }}{% endif %}</title>
+    {% if meta_description %}
+      <meta name="description" content="{{ meta_description }}">
+    {% endif %}
+    {% if meta_tags %}
+      {% for tag in meta_tags %}
+        <meta {% if tag.name %} name="{{ tag.name }}" {% endif %} {% if tag.property %} property="{{ tag.property }}" {% endif %} content="{{ tag.content }}">
+      {% endfor %}
+    {% endif %}
+    <link rel="stylesheet" href="/build/app.css?v={{ site.version }}"/>
+    {% include 'gtm-head.njk' %}
+    {% if schema %}
+      {% include 'schema-' ~ schema ~ '.njk' %}
+    {% endif %}
+  </head>
+  <body>
+  {% include 'gtm-body.njk' %}
+    <a href="#content" class="sr-only">scroll to content</a>
+  <div class="flex flex-col min-h-screen">
+    {% include 'header.njk' %}
+    {% include 'navigation.njk' %}
+    {% include 'page-title.njk' %}
+    <main id="content" class="flex-grow flex-shrink">{{ content | safe }}</main>
+    {% include 'call-to-action.njk' %}
+    {% include 'footer.njk' %}
+  {% include 'footer-copyright.njk' %}
+  </div>
+  <script src="/build/runtime.js?v={{ site.version }}"></script>
+  <script src="/build/app.js?v={{ site.version }}"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<footer class="{{ site.colors.footer.background }} {{ site.colors.footer.text }} py-6">
+    <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <h4>About {{ site.name }}</h4>
+                <div class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dicta et ipsa, omnis rem voluptatem.
+                </div>
+                {% include 'address.njk' %}
+            </div>
+            <div>
+                <h4>More Information</h4>
+                <div>
+                    {% include 'footer-menu.njk' %}
+                </div>
+            </div>
+            <div>
+                <div>
+                    {% include 'newsletter-signup.njk' %}
+                </div>
+
+                <div>
+                    {% include 'footer-social.njk' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>

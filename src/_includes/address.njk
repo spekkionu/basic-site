@@ -1,0 +1,12 @@
+<div class="vcard">
+    <div class="org font-bold">{{ site.address.company }}</div>
+    <address class="addr" itemscope itemtype="https://schema.org/PostalAddress">
+        <div class="street-address" itemprop="streetAddress">
+            <div>{{ site.address.street }}</div>
+            {% if site.address.street2 %}<div>{{ site.address.street2 }}</div>{% endif %}
+        </div>
+        <div><span itemprop="addressLocality" class="locality">{{ site.address.city }}</span>, <span itemprop="addressRegion" class="region">{{ site.address.state}}</span>  <span itemprop="postalCode" class="postal-code">{{ site.address.zip }}</span></div>
+        {% if site.address.phone %}<div><a class="tel {{ site.colors.footer.text }}" itemprop="telephone" href="tel:+1{{ site.address.phone | digits }}">{{ site.address.phone }}</a></div>{% endif %}
+        {% if site.address.email %}<div><a class="email {{ site.colors.footer.text }}" itemprop="email" href="mailto:{{ site.address.email }}">{{ site.address.email }}</a></div>{% endif %}
+    </address>
+</div>

@@ -1,0 +1,21 @@
+---
+layout: layouts/main.njk
+title: Contact Us
+schema: contact
+header: /assets/images/header-contact.jpg
+---
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+        {% include 'contact-form-netlify.njk' %}
+    </div>
+
+    <div>
+        {% include 'address.njk' %}
+        {% if site.google_maps_key and site.map_address %}
+            <div class="mt-4 embed-responsive aspect-ratio-4/3">
+                <iframe class="embed-responsive-item" aria-hidden="true"
+                        src="https://www.google.com/maps/embed/v1/place?q={{ site.map_address }}&key={{ site.google_maps_key }}"></iframe>
+            </div>
+        {% endif %}
+    </div>
+</div>

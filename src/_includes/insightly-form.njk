@@ -1,0 +1,28 @@
+<form name="insightly_web_to_lead" action="https://googleapps.insight.ly/WebToLead/Create" method="post">
+    <input type="hidden" name="formId" value="ibzDlXeqf1xeMec4xyJDhQ=="/>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="mb-2">
+            <label class="block mb-1" for="insightly_firstName">First Name: </label>
+            <input id="insightly_firstName" class="form-input w-full" name="FirstName" required type="text" autocomplete="given-name" autofocus/>
+        </div>
+        <div class="mb-2">
+            <label class="block mb-1" for="insightly_lastName">Last Name: </label>
+            <input id="insightly_lastName" class="form-input w-full" name="LastName" required type="text" autocomplete="family-name"/>
+        </div>
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1" for="email">Email: </label>
+        <input id="insightly_Email" class="form-input w-full" name="email" required type="email" autocomplete="email"/>
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1" for="phone">Phone: </label>
+        <input id="insightly_Phone" class="form-input w-full" name="phone" type="tel" autocomplete="tel-national"/>
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1" for="Description">Message: </label>
+        <textarea id="insightly_Description" rows="6" class="form-input w-full" name="Description" required></textarea>
+    </div>
+    <input type="hidden" id="insightly_ResponsibleUser" name="ResponsibleUser" value="222069"/>
+    <input type="hidden" id="insightly_LeadSource" name="LeadSource" value="3270495"/>
+    <button type="submit" class="btn">Submit</button>
+</form>

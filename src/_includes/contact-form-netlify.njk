@@ -1,0 +1,26 @@
+<form name="contact" data-netlify="true" method="post" netlify-honeypot="website" data-netlify-recaptcha="true">
+    <p class="hidden">
+        <label>Don’t fill this out if you're human: <input name="website" autocomplete="off"/></label>
+    </p>
+    <div class="mb-2">
+        <label class="block mb-1 required" for="contact-name">Name</label>
+        <input id="contact-name" class="form-input w-full" type="text" name="name" required autofocus autocomplete="name">
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1 required" for="contact-email">Email</label>
+        <input id="contact-email" class="form-input w-full" type="email" name="email" required
+               autocomplete="email">
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1" for="contact-phone">Phone</label>
+        <input id="contact-phone" class="form-input w-full" type="tel" name="phone" autocomplete="tel-national">
+    </div>
+    <div class="mb-2">
+        <label class="block mb-1 required" for="contact-message">Message</label>
+        <textarea id="contact-message" rows="6" class="form-textarea w-full" name="message" required></textarea>
+    </div>
+    <div class="mb-2" data-netlify-recaptcha="true"></div>
+    <div>
+        <button type="submit" class="btn">Submit</button>
+    </div>
+</form>

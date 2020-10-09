@@ -1,0 +1,38 @@
+<script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "LocalBusiness",
+        "url": "{{ site.url }}",
+        "name": "{{ site.name }}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "{{ site.address.city }}",
+            "addressRegion": "{{ site.address.state }}",
+            "postalCode": "{{ site.address.zip }}",
+            "streetAddress": "{{ site.address.street + ' ' + site.address.street2 | trim }}",
+            "addressCountry": "{{ site.address.country }}"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}",
+            "url": "{{ site.url }}"
+        },
+        {% if site.address.phone %}
+        "telephone": "{{ site.address.phone }}",
+        {% endif %}
+        {% if site.geolocation.latitude and site.geolocation.longitude %}
+        "latitude": {{ site.geolocation.latitude }},
+        "longitude": {{ site.geolocation.longitude }},
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": {{ site.geolocation.latitude }},
+            "longitude": {{ site.geolocation.longitude }}
+        },
+        {% endif %}
+        {% if site.address.email %}
+        "email": "{{ site.address.email }}",
+        {% endif %}
+        "sameAs": [
+            {% for link in social %} "{{ link.url }}" {% if not loop.last %},{% endif %}{% endfor %}
+        ]
+    }
+</script>

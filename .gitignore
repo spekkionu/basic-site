@@ -1,0 +1,6 @@
+/_site/
+node_modules
+/_tmp/
+
+# Local Netlify folder
+.netlify

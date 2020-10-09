@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    html, body {
+        @apply text-gray-900;
+    }
+
+    a {
+        @apply text-blue-700;
+    }
+
+    a:hover {
+        @apply underline;
+    }
+
+    h1 {
+        @apply text-4xl font-bold mb-4;
+    }
+
+    h2 {
+        @apply text-3xl font-bold mb-3;
+    }
+
+    h3 {
+        @apply text-2xl font-bold mb-2;
+    }
+
+    h4 {
+        @apply font-bold mb-2;
+    }
+
+    h5 {
+        @apply mb-2;
+    }
+
+    h6 {
+        @apply mb-2 text-sm;
+    }
+
+    p {
+        @apply mb-2;
+    }
+
+    strong {
+        @apply font-bold;
+    }
+
+    em {
+    }
+
+    ol {
+        @apply list-decimal list-inside;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+
+    blockquote {
+        @apply my-4 text-lg;
+    }
+
+    img, svg {
+        @apply inline-block max-w-full h-auto;
+    }
+
+    video {
+        @apply max-w-full h-auto;
+    }
+
+    picture {
+        @apply max-w-full h-auto;
+    }
+
+    hr {
+        @apply my-4 border-gray-700 border;
+    }
+
+    th {
+        @apply text-left;
+    }
+}
+
+@layer components {
+
+    .text-body {
+        @apply text-gray-900;
+    }
+
+    .never-underline {
+        @apply no-underline;
+    }
+
+    .never-underline:hover {
+        @apply no-underline;
+    }
+
+    label.required:after {
+        @apply text-red-500;
+        content: "*";
+        margin-left: 3px;
+    }
+
+    .btn {
+        @apply inline-block font-normal px-4 py-2 text-white bg-blue-600 rounded border-0 no-underline transition duration-300 ease-in-out;
+    }
+
+    .btn:hover {
+        @apply bg-blue-700 no-underline;
+    }
+
+    .btn:disabled {
+        @apply opacity-50;
+    }
+
+    .btn:disabled:hover {
+        @apply cursor-not-allowed;
+    }
+
+    .btn-sm {
+        @apply py-1 px-2 text-sm leading-normal;
+    }
+
+    .btn-block {
+        @apply block w-full;
+    }
+
+    .btn-blue {
+        @apply bg-blue-600 text-white;
+    }
+
+    .btn-blue:hover {
+        @apply bg-blue-700;
+    }
+
+    .btn-teal, .btn-info {
+        @apply bg-teal-500 text-white;
+    }
+
+    .btn-teal:hover, .btn-info:hover {
+        @apply bg-teal-600;
+    }
+
+
+    .btn-purple {
+        @apply bg-purple-700 text-white;
+    }
+
+    .btn-purple:hover {
+        @apply bg-purple-800;
+    }
+
+    .btn-green, .btn-success {
+        @apply bg-green-600 text-white;
+    }
+
+    .btn-green:hover, .btn-success:hover {
+        @apply bg-green-700;
+    }
+
+    .btn-red, .btn-danger {
+        @apply bg-red-600 text-white;
+    }
+
+    .btn-red:hover, .btn-danger:hover {
+        @apply bg-red-700;
+    }
+
+    .btn-orange, .btn-warning {
+        @apply bg-orange-500 text-white;
+    }
+
+    .btn-orange:hover, .btn-warning:hover {
+        @apply bg-orange-600;
+    }
+
+    .btn-gray, .btn-default {
+        @apply bg-gray-300 text-black;
+    }
+
+    .btn-gray:hover, .btn-default:hover {
+        @apply bg-gray-400;
+    }
+
+    .btn-slider {
+        @apply font-bold bg-black text-white border-white border rounded-none;
+    }
+
+    .btn-slider:hover {
+        @apply bg-white text-black;
+    }
+
+    .content-slider .swiper-button-prev,
+    .content-slider .swiper-button-next {
+        @apply text-white;
+    }
+
+
+    .swiper-pagination-bullets .swiper-pagination-bullet {
+        @apply w-4 h-4 bg-black opacity-100;
+    }
+
+    .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        @apply bg-white;
+    }
+
+    .slider--testimonials .swiper-button-prev,
+    .slider--testimonials .swiper-button-next {
+        @apply text-white;
+    }
+
+    .slider--testimonials .swiper-pagination-bullets .swiper-pagination-bullet {
+        @apply bg-white;
+    }
+
+    .slider--testimonials .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        @apply bg-blue-600;
+    }
+
+
+    .slider--testimonials .cite:before {
+        content: '―';
+        margin-right: 3px;
+    }
+
+    .icon {
+        @apply inline-block overflow-visible fill-current;
+        display: inline-block;
+        font-size: inherit;
+        height: 1em;
+        width: 1em;
+        vertical-align: -.125em;
+    }
+}

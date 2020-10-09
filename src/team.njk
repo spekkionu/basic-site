@@ -1,0 +1,32 @@
+---
+layout: layouts/main.njk
+title: The Team
+---
+
+<h2 class="text-center">Meet Our Team</h2>
+<p class="text-lg leading-loose text-center">
+    Together we can help you achieve your business goals.
+</p>
+
+<div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="flex flex-col justify-center items-center">
+        {% photo '_images/team/ben-jones.jpg', {class: 'rounded-full', alt: 'Ben Jones'}, 200 %}
+        <h4 class="text-2xl">Ben Jones</h4>
+        <div class="text-lg font-bold">CEO</div>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+        {% photo '_images/team/sarah-smith.jpg', {class: 'rounded-full', alt: 'Sarah Smith'}, 200 %}
+        <h4 class="text-2xl">Sarah Smith</h4>
+        <div class="text-lg font-bold">CTO</div>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+        {% photo '_images/team/david-winters.jpg', {class: 'rounded-full', alt: 'David Winters'}, 200 %}
+        <h4 class="text-2xl">David Winters</h4>
+        <div class="text-lg font-bold">Sales</div>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+        {% photo '_images/team/john-doe.jpg', {class: 'rounded-full', alt: 'John Doe'}, 200 %}
+        <h4 class="text-2xl">John Doe</h4>
+        <div class="text-lg font-bold">Marketing</div>
+    </div>
+</div>
