@@ -1,6 +1,6 @@
 /_site/
 node_modules
 /_tmp/
-
+/functions/contact/example.js
 # Local Netlify folder
 .netlify

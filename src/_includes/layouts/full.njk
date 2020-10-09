@@ -20,7 +20,7 @@ title_overlay: rgba(0, 0, 0, 0.6)
     <link rel="stylesheet" href="/build/app.css?v={{ site.version }}"/>
     {% include 'gtm-head.njk' %}
     {% if schema %}
-      {% include 'schema-' ~ schema ~ '.njk' %}
+      {% include 'schema/' + schema + '.njk' ignore missing %}
     {% endif %}
   </head>
   <body>

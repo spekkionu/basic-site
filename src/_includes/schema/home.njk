@@ -1,4 +1,5 @@
-<script type="application/ld+json">{
+<script type="application/ld+json">
+{
         "@context": "http://schema.org",
         "@type": "LocalBusiness",
         "url": "{{ site.url }}",
@@ -32,7 +33,8 @@
         "email": "{{ site.address.email }}",
         {% endif %}
         "sameAs": [
-            {% for link in social %} "{{ link.url }}" {% if not loop.last %},{% endif %}{% endfor %}
+            {% for link in social %} "{{ link.url }}" {% if not loop.last %}{% endif %}{% endfor %}
         ]
     }
+
 </script>
