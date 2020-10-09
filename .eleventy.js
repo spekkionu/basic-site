@@ -6,6 +6,10 @@ const fs = require('fs')
 
 const site = require('./src/_data/site');
 
+function isFunction(functionToCheck) {
+    return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
+
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/assets");
     eleventyConfig.setTemplateFormats([
@@ -165,16 +169,24 @@ module.exports = function (eleventyConfig) {
         return `<img src="${stats[format][0].url}" srcset="${srcset}" ${attrs} loading="lazy">`;
     });
 
-    eleventyConfig.addNunjucksAsyncFilter("image", async function (src, width = null) {
+    eleventyConfig.addNunjucksAsyncFilter("image", async function (src, width, callback) {
+        if (isFunction(width)) {
+            callback = width;
+            width = null;
+        }
+        if(!width) width = null;
         let format = src.split('.').pop()
-        let stats = await Image(path.resolve(__dirname, 'src', src), {
-            widths: [width],
-            formats: [format],
-            urlPath: "/assets/images/",
-            outputDir: path.resolve(__dirname, "_site/assets/images") + '/',
-        });
-
-        return stats[format][0].url + '?v=' + String(Date.now());
+        try {
+            let stats = await Image(path.resolve(__dirname, 'src', src), {
+                widths: [width],
+                formats: [format],
+                urlPath: "/assets/images/",
+                outputDir: path.resolve(__dirname, "_site/assets/images") + '/',
+            });
+            callback(null, stats[format][0].url + '?v=' + site.version);
+        } catch (error) {
+            callback(error);
+        }
     });
 
     eleventyConfig.addNunjucksAsyncFilter("asset", async function (src) {
