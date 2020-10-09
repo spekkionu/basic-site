@@ -71,7 +71,7 @@ module.exports = function (eleventyConfig) {
                 return `${open} data-slide class="swiper-slide  no-underline hover:no-underline bg-no-repeat bg-center bg-cover flex justify-center items-center" style="background-image: url('${stats.jpg[0].url}')">${inner}${close}`;
             }))
         })(slides);
-        return `<div data-slider class="content-slider swiper-container h-300px md:h-400px lg:h-500px w-full" >\n\n`
+        return `<div data-slider class="slider--content swiper-container h-300px md:h-400px lg:h-500px w-full" >\n\n`
             + `<div class="swiper-wrapper">\n\n`
             + images.join("\n\n")
             + `\n\n</div>\n`

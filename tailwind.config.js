@@ -6,7 +6,7 @@ module.exports = {
   purge: {
     content: ["_site/**/*.html", "resources/js/components/**/*.vue"],
     options: {
-      whitelist: [/^swiper-/],
+      safelist: [/^swiper-/, /^slider--/],
     },
   },
   theme: {

@@ -36,8 +36,8 @@ module.exports = {
             text: 'text-4xl transform-uppercase'
         },
         cta: {
-            container: 'bg-orange-600 text-white',
-            button: 'btn rounded-full text-white bg-transparent border-2 border-white hover:bg-white hover:text-orange-500',
+            container: 'bg-purple-700 text-white',
+            button: 'btn rounded-full text-white bg-transparent border-2 border-white hover:bg-white hover:text-purple-600',
         },
         footer: {
             background: 'bg-gray-900',
