@@ -193,7 +193,6 @@ module.exports = function (eleventyConfig) {
             svg.setAttribute('class', classes);
         }
 
-        svg.setAttribute('role', 'image');
         if (alt) {
             svg.setAttribute('aria-label', alt);
         }
