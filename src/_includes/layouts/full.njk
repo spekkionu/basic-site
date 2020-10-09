@@ -1,5 +1,5 @@
 ---
-cta: true
+cta: call-to-action.njk
 header: _images/headers/header.jpg
 title_overlay: rgba(0, 0, 0, 0.6)
 ---
@@ -18,6 +18,9 @@ title_overlay: rgba(0, 0, 0, 0.6)
       {% endfor %}
     {% endif %}
     <link rel="stylesheet" href="/build/app.css?v={{ site.version }}"/>
+    {% if head %}
+      {% include head ignore missing %}
+    {% endif %}
     {% include 'gtm-head.njk' %}
     {% if schema %}
       {% include 'schema/' + schema + '.njk' ignore missing %}
@@ -31,11 +34,16 @@ title_overlay: rgba(0, 0, 0, 0.6)
     {% include 'navigation.njk' %}
     {% include 'page-title.njk' %}
     <main id="content" class="flex-grow flex-shrink">{{ content | safe }}</main>
-    {% include 'call-to-action.njk' %}
+    {% if cta %}
+      {% include cta %}
+    {% endif %}
     {% include 'footer.njk' %}
   {% include 'footer-copyright.njk' %}
   </div>
   <script src="/build/runtime.js?v={{ site.version }}"></script>
   <script src="/build/app.js?v={{ site.version }}"></script>
+  {% if scripts %}
+    {% include scripts ignore missing %}
+  {% endif %}
   </body>
 </html>

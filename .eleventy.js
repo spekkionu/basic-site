@@ -201,9 +201,6 @@ module.exports = function (eleventyConfig) {
         let file = path.resolve(_dirname, 'src', src)
         const dom = JSDOM.fragment(fs.readFileSync(file).toString());
         let svg = dom.querySelector('svg');
-        if (classes) {
-            svg.setAttribute('class', classes);
-        }
 
         if (alt) {
             svg.setAttribute('aria-label', alt);
