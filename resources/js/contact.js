@@ -1,10 +1,9 @@
-import Vue from 'vue';
+import {createApp, h} from 'vue';
 import ContactForm from './components/ContactForm.vue';
 
 const form = document.getElementById('contact-form');
 if (form) {
-    new Vue({
-        el: document.getElementById('contact-form'),
-        render: h => h(ContactForm),
-    });
+    createApp({
+        render() { return h(ContactForm) },
+    }).mount(document.getElementById('contact-form'));
 }

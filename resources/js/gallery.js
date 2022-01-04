@@ -5,7 +5,9 @@ import 'glightbox/dist/css/glightbox.css';
         let galleries = document.querySelectorAll('[data-photogallery]');
         if(galleries.length > 0){
             GLightbox({
-                selector: '[data-photogallery] a'
+                selector: '[data-photogallery] a',
+                touchNavigation: true,
+                loop: true
             });
         }
     });

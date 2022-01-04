@@ -3,6 +3,7 @@ const _ = require('lodash')
 const JSDOM = require("jsdom").JSDOM;
 const path = require('path')
 const fs = require('fs')
+const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 
 const site = require('./src/_data/site');
 
@@ -11,6 +12,9 @@ function isFunction(functionToCheck) {
 }
 
 module.exports = function (eleventyConfig) {
+    eleventyConfig.addPlugin(UpgradeHelper);
+    eleventyConfig.setDataDeepMerge(true);
+    eleventyConfig.setLiquidOptions({ dynamicPartials: true });
     eleventyConfig.addPassthroughCopy("src/assets");
     eleventyConfig.setTemplateFormats([
         "md", 'njk', 'html'
@@ -64,18 +68,19 @@ module.exports = function (eleventyConfig) {
             return Promise.all(slides.map(async (slide, index) => {
                 let stats = await Image(path.resolve(__dirname, 'src', slide.src), {
                     widths: [null],
-                    formats: ['jpg'],
+                    formats: ['jpeg'],
                     urlPath: "/assets/images/",
                     outputDir: path.resolve(__dirname, "_site/assets/images") + '/',
                 });
                 let open = slide.href ? `<a href="${slide.href}"` : '<div';
                 let close = slide.href ? `</a>` : '</div>';
-                let inner = slide.content ? `<div class="bg-black text-white bg-opacity-75 px-8 py-4">${slide.content}</div>` : '';
+                let inner = slide.content ? `<div class="bg-black text-white bg-opacity-75 px-8 py-4">${slide.content}</div>` : '<div class="swiper-lazy-preloader"></div>';
 
-                return `${open} data-slide class="swiper-slide  no-underline hover:no-underline bg-no-repeat bg-center bg-cover flex justify-center items-center" style="background-image: url('${stats.jpg[0].url}')">${inner}${close}`;
+                return `${open} data-background="${stats.jpeg[0].url}" data-slide class="swiper-slide swiper-lazy no-underline hover:no-underline bg-no-repeat bg-center bg-cover flex justify-center items-center">${inner}${close}`;
             }))
         })(slides);
-        return `<div data-slider class="slider--content swiper-container h-300px md:h-400px lg:h-500px w-full" >\n\n`
+
+        return `<div data-slider class="slider--content swiper h-300px md:h-400px lg:h-500px w-full" >\n\n`
             + `<div class="swiper-wrapper">\n\n`
             + images.join("\n\n")
             + `\n\n</div>\n`
@@ -101,15 +106,15 @@ module.exports = function (eleventyConfig) {
             return Promise.all(photos.map(async photo => {
                 let stats = await Image(path.resolve(__dirname, 'src', photo.src), {
                     widths: [width, null],
-                    formats: ['jpg'],
+                    formats: ['jpeg'],
                     urlPath: "/assets/images/",
                     outputDir: path.resolve(__dirname, "_site/assets/images") + '/',
                 });
 
                 let caption = photo.description ? `<meta itemprop="caption" content="${photo.description}">` : '';
                 return `<div itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                            <a itemprop="contentURL" href="${stats.jpg[1].url}" class="inline-block" style="margin:10px;" data-gallery="${id}" data-title="${photo.title}" data-description="${photo.description}">
-                                <img itemprop="thumbnailUrl" src="${stats.jpg[0].url}" alt="${photo.alt}" class="inline-block" loading="lazy">
+                            <a itemprop="contentURL" href="${stats.jpeg[1].url}" class="inline-block" style="margin:10px;" data-gallery="${id}" data-title="${photo.title}" data-description="${photo.description}">
+                                <img itemprop="thumbnailUrl" data-lazyload data-src="${stats.jpeg[0].url}" width="${stats.jpeg[0].width}" height="${stats.jpeg[0].height}" alt="${photo.alt}" class="inline-block">
                             </a>
                             ${caption}
                         </div>`;
@@ -130,7 +135,7 @@ module.exports = function (eleventyConfig) {
             testimonials.push(content);
         });
 
-        return `<div data-testimonials class="slider--testimonials swiper-container w-full">\n\n`
+        return `<div data-testimonials class="slider--testimonials swiper w-full">\n\n`
             + `<div class="swiper-wrapper">\n\n`
             + testimonials.join("\n\n")
             + `\n\n</div>\n`
@@ -141,7 +146,8 @@ module.exports = function (eleventyConfig) {
     });
 
     eleventyConfig.addNunjucksAsyncShortcode("photo", async function (src, attributes = {}, width = null) {
-        let format = src.split('.').pop()
+        let format = src.split('.').pop();
+        if(format == 'jpg') format = 'jpeg';
         let widths = [width];
         if (width === null) {
             widths = [320, 640, 768, 1024, 1280, 2048, null];
@@ -152,13 +158,13 @@ module.exports = function (eleventyConfig) {
             urlPath: "/assets/images/",
             outputDir: path.resolve(__dirname, "_site/assets/images") + '/',
         });
-
         let attrs = _.toPairs(attributes).map(attr => {
             return `${attr[0]}="${attr[1]}"`
         }).join(' ');
 
+
         if (widths.length === 1) {
-            return `<img src="${stats[format][0].url}" width="${stats[format][0].width}" height="${stats[format][0].height}" ${attrs}>`;
+            return `<img data-lazyload data-src="${stats[format][0].url}" width="${stats[format][0].width}" height="${stats[format][0].height}" ${attrs}>`;
         }
         let full = stats[format].pop();
         if (full.width < Math.max(widths)) {
@@ -166,7 +172,7 @@ module.exports = function (eleventyConfig) {
         }
         let srcset = stats[format].filter(image => image.width <= full.width).map(image => image.srcset).join(', ');
 
-        return `<img src="${stats[format][0].url}" srcset="${srcset}" ${attrs} loading="lazy">`;
+        return `<img data-lazyload data-src="${stats[format][0].url}" srcset="${srcset}" width="${stats[format][0].width}" height="${stats[format][0].height}" ${attrs}>`;
     });
 
     eleventyConfig.addNunjucksAsyncFilter("image", async function (src, width, callback) {
@@ -174,8 +180,9 @@ module.exports = function (eleventyConfig) {
             callback = width;
             width = null;
         }
-        if(!width) width = null;
+        if (!width) width = null;
         let format = src.split('.').pop()
+        if(format == 'jpg') format = 'jpeg';
         try {
             let stats = await Image(path.resolve(__dirname, 'src', src), {
                 widths: [width],

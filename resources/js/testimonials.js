@@ -1,6 +1,9 @@
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 // import Swiper styles
-import 'swiper/swiper-bundle.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 Swiper.use([Navigation, Pagination, Autoplay]);
 
@@ -8,7 +11,7 @@ Swiper.use([Navigation, Pagination, Autoplay]);
     document.addEventListener('DOMContentLoaded', function () {
         let testimonials = document.querySelectorAll('[data-testimonials]');
         if(testimonials.length > 0){
-            for(var i = 0; i < testimonials.length; i++){
+            for(let i = 0; i < testimonials.length; i++){
                 const swiper = new Swiper(testimonials[i],{
                     loop: true,
                     speed: 500,

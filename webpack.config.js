@@ -16,12 +16,8 @@ Encore
     // will create _site/build/app.js and _site/build/app.css
     .addEntry('app', './resources/js/app.js')
 
-    .configureUrlLoader({
-        fonts: { limit: 4096 },
-        images: { limit: 4096 }
-    })
     .enablePostCssLoader()
-    .enableVueLoader(() => {}, { runtimeCompilerBuild: false })
+    .enableVueLoader(() => {}, { version: 3, runtimeCompilerBuild: false })
     .enableSourceMaps(!Encore.isProduction())
     .cleanupOutputBeforeBuild()
 
