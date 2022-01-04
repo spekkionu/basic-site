@@ -55,6 +55,6 @@
     "glightbox": "^3.0.5",
     "luxon": "^1.25.0",
     "netlify-plugin-minify-html": "^0.3.0",
-    "swiper": "^6.3.2"
+    "swiper": "^6.8.4"
   }
 }
