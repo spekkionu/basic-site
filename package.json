@@ -53,7 +53,7 @@
     "@fortawesome/fontawesome-free": "^5.15.0",
     "element-closest": "^3.0.2",
     "glightbox": "^3.0.5",
-    "luxon": "^1.25.0",
+    "luxon": "^1.28.0",
     "netlify-plugin-minify-html": "^0.3.0",
     "swiper": "^6.3.2"
   }
