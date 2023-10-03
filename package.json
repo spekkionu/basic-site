@@ -23,7 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "^1.0.0",
-    "@11ty/eleventy-img": "^1.0.0",
+    "@11ty/eleventy-img": "^3.1.0",
     "@11ty/eleventy-upgrade-help": "^1.0.1",
     "@babel/core": "^7.16.10",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
@@ -32,7 +32,7 @@
     "@babel/plugin-transform-runtime": "^7.16.10",
     "@babel/preset-env": "^7.16.10",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@symfony/webpack-encore": "^1.7.0",
+    "@symfony/webpack-encore": "^2.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.1",
